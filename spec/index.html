@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊之芽 Python Flask 小作業</title>
+    <link rel="stylesheet" href="spec/themes.css">
+    <link rel="stylesheet" href="spec/style.css">
+</head>
+<body>
+    <div class="main-particles"></div>
+    <div class="side-particles"></div>
+    <canvas id="bg-canvas"></canvas>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#intro">簡介</a></li>
+            <li><a href="#rules">作業規範</a></li>
+            <li><a href="#tasks">任務</a></li>
+            <li><a href="#final">部署及繳交</a></li>
+        </ul>
+    </nav>
+    <main class="content">
+        <section>
+            <h1> 2025 資訊之芽 Python 語法班 Python Flask 小作業</h1>
+        </section>
+        <section id="intro">
+            <h1>簡介</h1>
+            <p>
+                在本次作業中，我們會進行簡單的網頁前後端開發，從中學習網頁、網際網路相關知識、練習進階 Python 語法、接觸 Python Flask 網頁框架。
+            </p>
+            <br/>
+            <p>在本次作業中，你將完成:</p>
+            <ol>
+                <li>一個 Python Flask 後端程式，回應使用者的 HTTP Request</li>
+                <li>製作簡單的一頁式網站，主題不拘</li>
+                <li>在網頁中提供到訪人次資訊，用後端完成</li>
+                <li>提供一個簡單的轉址回應</li>
+                <li>其他額外的前後端設計 (選做)</li>
+                <li>部屬你的 Python Flask 後端程式，提供服務</li>
+            </ol>
+            <br/>
+            <p>完成作業後，你需要繳交以下內容:</p>
+            <ol>
+                <li>將專案原始碼放到一個 GitHub Repo，繳交 GutHub Repo 的連結</li>
+                <li>部屬好的網站連結</li>
+                <li>簡單的影片說明，介紹你完成的內容 (操作前端即可，不需講解程式碼)</li>
+                <li>若無法以影片呈現，書面報告亦可接受</li>
+            </ol>
+            
+            <br/>
+            <p>
+                預計需要 1~2 小時，完成基礎的網頁程式。
+                <br/>
+                根據你選做額外項目的難度、你的熟悉程度，需要更多時間，完成你的網頁設計。
+                <br/>
+                預計需要 1 小時，完成所有的繳交工作。
+            </p>
+
+        </section>
+        <section id="rules">
+            <h1>作業規範</h1>
+            <h2 class="warning">Deadline: 2025/05/XX</h2>
+            <p><i class="remark">前端網頁可以利用任何資源完成。</i></p>
+            <p><i class="remark">後端 Python Flask 需要自己完成。</i></p>
+            <br/>
+            <p>在本次作業中，你可以使用任何資源輔助完成<b>"前端設計"</b>，包含但不限於:</p>
+            <ul>
+                <li>生成式 AI 工具</li>
+                <li>任何框架、現成的 library，包含但不限於:</li>
+                <ul>
+                    <li>jQuery</li>
+                    <li>Bootstrap</li>
+                    <li>React.js、Vue.js、Angular (但個人不建議)</li>
+                    <li>
+                        其他 library，例如: 
+                        <a href="https://github.com/jhlywa/chess.js/tree/master">chess.js</a>、
+                        <a href="https://github.com/VincentGarreau/particles.js/">particles.js</a>
+                        ，等等外部的前端實作
+                    </li>
+                </ul>
+                <li>其他由別人實作出來，你認為不錯的前端設計</li>
+                <li>如果別人願意送你前端程式，e.g. 講師，你也可以拿來使用</li>
+            </ul>
+            <p>若你的前端程式符合上述的任何一項，你需要在你的原始碼 GitHub Repo 內，新增 README.md 檔，說明你使用了什麼。</p>
+            <br/>
+            <p>在本次作業中，你<b>"不"</b>可以使用以下資源輔助完成<b>"Python Flask 後端"</b>，包含:
+                <ul>
+                    <li>生成式 AI 工具</li>
+                    <li>別人送的後端程式，e.g. 同學</li>
+                </ul>
+            <p>若你的 Python Flask 程式符合上述的任何一項，此次作業視同未完成。</p>
+            <br/>
+            <p>其餘各項任務的細則，請見<a href="#tasks">任務</a>說明。</p>
+            
+        </section>
+        <section id="tasks">
+            <h1>任務</h1>
+            <h2>名詞簡寫</h2>
+            <ul>
+                <li><u><code>[server]</code></u>: 代指你的 Python Flask Web Server 位址</li>
+                    <ul>
+                        <li>在本地端測試時，<code>[server]</code> 可以代指 <code>127.0.0.1</code></li>
+                        <li>在本地端測試時，若 server 被開在 port 48763。<code>[server]</code> 可以代指 <code>127.0.0.1:48763</code></li>
+                        <li>在本地端測試時，<code>[server]</code> 可以代指 <code>localhost</code></li>
+                        <li>當服務被部屬到 <code>csie.ntu.edu.tw</code> 的網域中，<code>www</code> 這台機器時。<code>[server]</code> 可以代指 <code>www.csie.ntu.edu.tw</code></li>
+                    </ul>
+                <li><u><code>/(route)</code> 的網頁</u>: 代指向 <code>[server]</code> 發送 HTTP GET Request ，存取 route 為 <code>/(route)</code> 時，收到的 HTML 網頁檔案 (也就是會顯示在瀏覽器中的網頁)</li>
+                    <ul>
+                        <li>
+                            "<code>/</code> 的網頁"，代指向 <code>[server]</code> 發送 HTTP GET Request ，
+                            存取 route 為 <code>/</code> 時，收到的 HTML 網頁檔案。
+                            也就是在一頁是網站任務中，應該要被顯示在瀏覽器的網頁。
+                        </li>
+                    </ul>
+            </ul>
+            <h2>一頁式網站</h2>
+            <h4>score: 20 points</h4>
+            <h4>任務說明:</h4>
+            <p>在本項任務中，你需要達成以下目標:</p>
+            <p>在 browser 存取 URL: <code>http://[server]/</code> 時，可以成功看到同學的網頁。</p>
+            <p>也就是，向 <code>[server]</code> 發送 HTTP GET Request ，存取 route 為 <code>/</code> (root) 時，會拿到同學的網頁。</p>
+            <h4>一頁式網站說明:</h4>
+            <p><i>網站 (Website): 網站是一個完整的、可以訪問的網路資源，通常有一個首頁作為入口，並可以通向許多其他的網頁。</i></p>
+            <p><i>網頁 (Web page): 網頁是網站中的一個單一頁面，是用 HTML 等技術編寫出來，能顯示在瀏覽器中的單一內容頁面。</i></p>
+            <br/>
+            <p>一頁式網站，強調使用單一網頁，來呈現完整的內容，不使用多份網頁來呈現你的內容。</p>
+            <p>旨在說明不需要製作太大型的應用 (如: Blog 網站、含登入系統的網站等)，只要在單一頁面內呈現內容就好。</p>
+            <br/>
+            <p>舉例而言:</p>
+            <ul>
+                <li>自我介紹網頁 <a href="https://www.csie.ntu.edu.tw/~yvchen/index-ch.html">範例</a></li>
+                <li>一個簡單的推坑網頁 <a href="https://pooiscoding.github.io/single_page_website_demo/">範例</a></li>
+                <li>不知所云的網頁 <a href="https://pooiscoding.github.io/fireworkEffect/">範例</a></li>
+                <li>一個簡單的 Hello World 也是可以啦</li>
+            </ul>
+            <p>在此任務中，只要有最基礎的回覆 (例如 Hello World) 就可以通過。</p>
+            <p>在本網頁中的額外設計，會被算在 其他選做 的 額外前端設計 項目中。</p>
+            <p>內容不可腥羶色，不可違反社會善良風俗，包含但不限於: 賭博、詐騙、釣魚網頁等等，違者視情節輕重有相對應的處分。</p>
+            <p>可愛的貓咪圖片、J-POP 推坑，非常歡迎 !</p>
+            <h4>測試方式:</h4>
+            <p>1. 在瀏覽器中，存取 URL: <code>http://[server]/</code> ，檢查回覆。</p>
+            <p>2. 在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v http://[server]/</code></pre>
+            <p>任一測試檢查到正確回覆即可通過測試，拿到 20 分。</p>
+            <p>沒有部份分數。</p>
+            <h2>造訪人次統計</h2>
+            <h4>score: 30 points</h4>
+            <h4>任務說明:</h4>
+            <p>在本項任務中，你需要達成以下目標:</p>
+            <p>在 <code>/</code> 的網頁中，新增一個 element，內容為本網頁累計造訪人次 (只需統計對 <code>/</code> 的 GET 請求數)。</p>
+            <h4>累計造訪人次說明:</h4>
+            <p>你必須在後端回應 HTML 文件時，動態地將累計人數替換進 HTML 檔中，進行回應。</p>
+            <p>具體而言，你會需要用到 <code>render_template()</code> 幫助你完成任務。</p>
+            <p>此外，本任務要求永久性保存造訪人次。也就是，即使 Python Flask 程式重啟，依然能記得過去累計的造訪人次。</p>
+            <p>具體而言，你可以將累計造訪人次儲存在本地檔案中，透過 FILE I/O 讀寫檔案，來紀錄、更新造訪人次。</p>
+            <h4>測試方式:</h4>
+            <p>1. 使用瀏覽器，存取 URL: <code>http://[server]/</code> 三次，檢查回覆。</p>
+            <p>2. 將同學的原始碼(提供的 GitHub Repo 連結內的程式碼)複製到本地端，修改同學的 Flask 程式如下。使用瀏覽器，存取 URL: <code>http://localhost:5522/</code> 三次，檢查回覆。</p>
+            <pre id="copyable"><code>app.run(host='127.0.0.1',port=5522)</code></pre>
+            <p>3. 重新執行同學的 Flask 程式。使用瀏覽器，存取 URL: <code>http://localhost:5522/</code> 三次，檢查回覆。</p>
+            <p>4. 閱讀同學程式碼，確認同學的造訪人次計數是在後端進行統計，並在回傳時動態地調整回應的 HTML。</p>
+            <p>九次的存取都檢查到正確的造訪人次，並確認同學的實作正確，即可通過測試，拿到 30 分。</p>
+            <p>若前兩項測試成功，最後一項測試行為不正確，可拿到 25 分。</p>
+            <p>若同學的程式無法成功執行，但經過簡單檢修後能跑起來。最終檢查到正確回覆，可拿到 20 分。</p>
+            <p>其餘沒有部份分數。</p>
+            <h2>轉址回應</h2>
+            <h4>score: 20 points</h4>
+            <h4>任務說明:</h4>
+            <p>在本項任務中，你需要達成以下目標:</p>
+            <p>實作一個 route <code>/redirect</code> ，使用瀏覽器存取 URL: <code>http://[server]/redirect</code> 時，會轉址到同學自訂的一個 URL。</p>
+            <p>也就是，向 [server] 發送 HTTP GET Request ，存取 route 為 <code>/redirect</code> 時，會拿到 302 Redirect 的回應。</p>
+            <h4>轉址說明:</h4>
+            <p>Response 的 status code 需為 302。</p>
+            <p>內容不可腥羶色，不可違反社會善良風俗，包含但不限於: 賭博、詐騙、釣魚網頁等等，違者視情節輕重有相對應的處分。</p>
+            <h4>測試方式:</h4>
+            <p>1. 在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v http://[server]/redirect</code></pre>
+            <p>檢查到正確回覆即可通過測試，拿到 20 分。</p>
+            <h2>其他前端設計</h2>
+            <h4>score: 20 points</h4>
+            <h3>排版</h3>
+            <h4>score: 5 points</h4>
+            <h4>任務說明:</h4>
+            <p>請將 <code>/</code> 的網頁，針對排版進行優化。</p>
+            <h4>測試方式:</h4>
+            <p>若針對排版進行努力，包含但不限於: 嘗試改變 display、position、margin、padding、文字大小、對齊等，可拿到 3 分。</p>
+            <p>符合前項，且整體協調不混亂，可拿到 2 分。</p>
+            <h3>互動設計</h3>
+            <h4>score: 5 points</h4>
+            <h4>任務說明:</h4>
+            <p>請在 <code>/</code> 的網頁，包含用 CSS 或 JS 實現的可互動元素。</p>
+            <p>舉例而言，像是點擊按鈕觸發事件、滑鼠碰到更改樣式等等。</p>
+            <h4>測試方式:</h4>
+            <p>有做、可使用，可拿到 3 分。</p>
+            <p>符合前項，且互動體驗佳，可拿到 2 分。</p>
+            <h3>一頁式網站內容加分</h3>
+            <h4>score: 5 points</h4>
+            <h4>任務說明:</h4>
+            <p>單純來送分的項目，針對 <code>/</code> 的網頁，內容用心程度評分。</p>
+            <h4>測試方式:</h4>
+            <p>用心感受同學的付出，根據內容豐富程度給予加分。</p>
+            <h3>一頁式網站視覺加分</h3>
+            <h4>score: 5 points</h4>
+            <h4>任務說明:</h4>
+            <p>單純來送分的項目，針對 <code>/</code> 的網頁，其外觀進行評分。</p>
+            <h4>測試方式:</h4>
+            <p>瀏覽同學的網頁，根據外觀精緻程度給予加分。</p>
+            <h2>其他後端設計</h2>
+            <h4>score: 25 points</h4>
+            <h3>Cookies</h3>
+            <h4>score: 5 points</h4>
+            <h4>任務說明:</h4>
+            <p>針對 <code>/</code> 的網頁，新增以下 cookie 機制:</p>
+            <p>檢查使用者是否攜帶名為 <code>seen</code> 的 cookie，並驗證其值是否為 <code>false</code>。</p>
+            <p>若未攜帶該 cookie，或其值為 <code>false</code>，則應為該使用者設置一個 <code>seen</code> cookie，並將其值設為 <code>true</code>。</p>
+            <h4>測試方式:</h4>
+            <p>1. 在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v http://[server]/</code></pre>
+            <p>檢查到正確回覆即可通過測試，拿到 3 分。</p>
+            <p>2. 在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，額外使用 <code>--cookie "seen=false"</code> 的參數，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v --cookie "seen=false" http://[server]/</code></pre>
+            <p>檢查到正確回覆即可通過測試，拿到 2 分。</p>
+            <h2>Download Files</h2>
+            <h4>score: 10 points</h4>
+            <h4>任務說明:</h4>
+            <p>在本地端新增一個資料夾 download ，存放所有可以被下載的檔案。</p>
+            <p>實作一個 route <code>/download</code> ，使用瀏覽器存取 URL: <code>http://[server]/download</code> 時，會回傳包含若干個檔名的網頁，表示 download 資料夾中，可以被下載的檔案們。</p>
+            <p>實作 route <code>/download/[file]</code>，使用瀏覽器存取 URL: <code>http://[server]/download/[file]</code> 時，會下載該檔案。</p>
+            <p><span class="remark">檔案內容皆為:</span> <code>test123</code>。</p>
+            <p>當檔案不存在時，回應 404 Not Found。</p>
+            <h4>目錄說明:</h4>
+            <p>請注意檔案權限相關問題。</p>
+            <p>你可以使用以下程式碼獲取 download 目錄內的所有 entry 名，包含檔案名、資料夾名:</p>
+            <pre id="copyable"><code>import os
+# get a list of file/directory names in download directory
+files = os.listdir('download')
+# generate your response with the files list</code></pre>
+            <p>你可以選擇不要在 download 資料夾中，放置其他資料夾，來避免奇怪的問題。</p>
+            <p>你也可以挑戰自己，實作 download 資料夾中，可以包含其他資料夾的程式。</p>
+            <h4>下載檔案回應說明:</h4>
+            <p>請注意檔案權限相關問題。</p>
+            <p>請注意惡意的檔案路徑問題。</p>
+            <p>推薦你使用以下程式碼回傳檔案:</p>
+            <pre id="copyable"><code>return send_from_directory('download', [FILENAME], as_attachment=True)</code></pre>
+            <p>其中 <code>as_attachment</code> 參數為 <code>True</code> 時，回傳的 HTTP Response 會在 header 中放入 <code>Content-Disposition: attachment</code> 的標記。</p>
+            <p>瀏覽器收到帶有此參數的 Response 時，會將回應的檔案解釋成附件，將檔案下載到本地端。(而不是將檔案內容內嵌在瀏覽器的畫面中)</p>
+            <h4>測試方式:</h4>
+            <p>1. 使用瀏覽器，存取 URL: <code>http://[server]/download</code>，檢查回覆。</p>
+            <p>2. 隨機選一個顯示在 <code>/download</code> 網頁中的檔名，在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v http://[server]/download/[filename]</code></pre>
+            <p>3. 隨機選一個沒有顯示在 <code>/download</code> 網頁中的英文字串(不超過 10 個字母)，在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查回覆。</p>
+            <pre id="copyable"><code>curl -v http://[server]/download/[filename]</code></pre>
+            <p>4. 在命令提示字元中，利用 <code>curl</code> 工具發送 HTTP GET Request，檢查存取以下 URL 的回覆 (應為 404 Not Found)。</p>
+            <pre id="copyable"><code>curl -v http://[server]/download/../app.py</code></pre>
+            <p>通過第一項測試，可得 5 分。</p>
+            <p>在通過第一項測試的基礎下，通過第二項測試，可得 3 分。</p>
+            <p>在通過第一項測試的基礎下，通過第三項測試，可得 1 分。</p>
+            <p>在通過第一項測試的基礎下，通過第四項測試，可得 1 分。</p>
+            <h2>已讀</h2>
+            <h4>score: 10 points</h4>
+            <h4>任務說明:</h4>
+            <p>請實作一個 route <code>/get_tracker</code>，在瀏覽器存取 URL: <code>http://[server]/get_tracker</code> 後，會獲得一個 <code>admin: [id]</code> 的 cookie。</p>
+            <p><code>[id]</code> 為 server 提供的數字，用來唯一辨識一個 tracker (追蹤器)。每次存取 <code>/get_tracker</code> 時，需獲得不同的 id。</p>
+            <p>請實作一個 route <code>/tracker?id=[id]</code>，被存取時會回傳一個 1px*1px 的透明圖片。</p>
+            <p>若存取者帶有 <code>admin: [id]</code> 的 cookie，則不會更新此 tracker 的狀態。</p>
+            <p>若存取者不帶有 <code>admin: [id]</code> 的 cookie，則將 id 為 <code>[id]</code> 的 tracker 狀態更新成已讀。</p>
+            <p>最後實作一個 route <code>/read?id=[id]</code> 的網頁，顯示 id 為 <code>[id]</code> 的 tracker 是否為已讀狀態。</p>
+            <p>若已讀，則顯示 Yes；若未讀，則顯示 No。</p>
+            <h4>透明圖片說明:</h4>
+            <p>以下 HTML 是一張 1px*1px 的透明圖片:</p>
+            <pre id="copyable"><code>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wwAAgMBApUlp/oAAAAASUVORK5CYII=" alt=""/&gt;</code></pre>
+        <section id="final">
+            <h1>部屬及繳交</h1>
+        </section>
+    </main>
+
+    <div id="theme-switcher" class="theme-switcher">
+        <div class="theme-color" id="light-theme" style="background: linear-gradient(90deg, #f9fafb 50%, #e11d48 50%)"></div>
+        <div class="theme-color" id="dark-theme" style="background: linear-gradient(90deg, #121212 50%, #f43f5e 50%)"></div>
+        <div class="theme-color" id="cute-theme" style="background: linear-gradient(90deg, #fde68a 50%, #f9a8d4 50%)"></div>
+        <div class="theme-color" id="tech-theme" style="background: linear-gradient(90deg, #0f172a 50%, #38bdf8 50%)"></div>
+        <div class="theme-color" id="greek-theme" style="background: linear-gradient(90deg, #f0f4f8 50%, #2563eb 50%)"></div>
+    </div>
+
+    <footer>
+        <p>Not set</p>
+    </footer>
+    <script src="spec/script.js"></script>
+</body>
+</html>
