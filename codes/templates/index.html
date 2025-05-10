@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template demo</title>
+</head>
+<body>
+    <h1>{{header}}</h1>
+    <p>{{n1 - n2}}</p>
+    {% if n3 > n4 %}
+    <p>n3 > n4</p>
+    {% elif n3 == n4 %}
+    <p>n3 == n4</p>
+    {% else %}
+    <p>n3 < n4</p>
+    {% endif %}
+    {% for i in range(n3, n4) %}
+    <p>{{i}}</p>
+    {% endfor %}
+</body>
+</html>

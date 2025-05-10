@@ -42,6 +42,7 @@
             <p>完成作業後，你需要繳交以下內容:</p>
             <ol>
                 <li>將專案原始碼放到一個 GitHub Repo，繳交 GutHub Repo 的連結</li>
+                <li>若無法以 GitHub Repo 呈現，將原始碼打包成 zip 壓縮檔，繳交 Google 雲端硬碟分享連結，亦可接受</li>
                 <li>部屬好的網站連結</li>
                 <li>簡單的影片說明，介紹你完成的內容 (操作前端即可，不需講解程式碼)</li>
                 <li>若無法以影片呈現，書面報告亦可接受</li>
@@ -59,7 +60,7 @@
         </section>
         <section id="rules">
             <h1>作業規範</h1>
-            <h2 class="warning">Deadline: 2025/05/XX</h2>
+            <h2 class="warning">Deadline: 2025/06/01</h2>
             <p><i class="remark">前端網頁可以利用任何資源完成。</i></p>
             <p><i class="remark">後端 Python Flask 需要自己完成。</i></p>
             <br/>
@@ -100,7 +101,7 @@
                 <li><u><code>[server]</code></u>: 代指你的 Python Flask Web Server 位址</li>
                     <ul>
                         <li>在本地端測試時，<code>[server]</code> 可以代指 <code>127.0.0.1</code></li>
-                        <li>在本地端測試時，若 server 被開在 port 48763。<code>[server]</code> 可以代指 <code>127.0.0.1:48763</code></li>
+                        <li>在本地端測試時，若 server 被開在 port 48763，<code>[server]</code> 可以代指 <code>127.0.0.1:48763</code></li>
                         <li>在本地端測試時，<code>[server]</code> 可以代指 <code>localhost</code></li>
                         <li>當服務被部屬到 <code>csie.ntu.edu.tw</code> 的網域中，<code>www</code> 這台機器時。<code>[server]</code> 可以代指 <code>www.csie.ntu.edu.tw</code></li>
                     </ul>
@@ -267,10 +268,11 @@ files = os.listdir('download')
             <p>最後實作一個 route <code>/read?id=[id]</code> 的網頁，顯示 id 為 <code>[id]</code> 的 tracker 是否為已讀狀態。</p>
             <p>若已讀，則顯示 Yes；若未讀，則顯示 No。</p>
             <h4>透明圖片說明:</h4>
-            <p>以下 HTML 是一張 1px*1px 的透明圖片:</p>
+            <p>以下 URL 有一張 1px*1px 的透明圖片，可以下載下來使用:</p>
             <pre id="copyable"><code>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wwAAgMBApUlp/oAAAAASUVORK5CYII=" alt=""/&gt;</code></pre>
         <section id="final">
             <h1>部屬及繳交</h1>
+
         </section>
     </main>
 
